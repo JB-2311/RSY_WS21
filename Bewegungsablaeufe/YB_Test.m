@@ -1,11 +1,13 @@
 %createSerialLink;
 createSerialLink_ZeroModify;
-Uebergabehoehe;
 
 % Postition des anderen YB
 pos_YB=[1000 0 300 0 0];
 theta1=atan((pos_YB(2)/pos_YB(1)));
 r_ueb=sqrt((pos_YB(2))^2+(pos_YB(1))^2)
+
+% Übergabehöhe berechnen
+Uebergabehoehe;
 
 % Position unseres YB
 x2=cos(theta1)*(r_ueb/2);
@@ -16,8 +18,9 @@ schritte=20; % Anzahl Schritte
 a=0:(1/schritte):1; 
 a=transpose(a);
 
+% später in Bewegungsschleife, da Werte immer aktualisiert werden müssen
 Arbeitsraum;
-% PunktEbeneAbstand;
+PunktEbeneAbstand;
 
 createSerialLink_ZeroModify;
 IK;
