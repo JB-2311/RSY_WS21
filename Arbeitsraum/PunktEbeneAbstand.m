@@ -1,30 +1,40 @@
-clear all
-r = [0 200 0];
-punkt = [0 400 0]
-x = [1 0 0];
-y = [0 1 0];
-z = [0 0 1];
+%clear all
 
-ortho1 = cross(r,z);
-ortho2= z;
+% Uebergabepunkt spaeter von Kamera
+r_PE = [pos_YB(1); pos_YB(2); 0];
+punkt = [Position(1); Position(2); Position(3)];
 
-syms a b rho
+% Einheitsvektor fuer Verrechnung der Matrizen
+z_EV = [0; 0; 1];
+
+% ortho1 = cross((r/2),z);
+ortho1 = cross(r_PE,z_EV);
+ortho2 = z_EV;
+
 %Ebene im Raum
+syms a b rho
 %Ebene = r/2 + a * ortho1 + b * ortho2;
-%Grade im Raum
-FlaechenNormale = r/norm(r);
-%Grade = punkt + rho*FlaechenNormale;
 
-Vektor = punkt - r/2;
+%Gerade im Raum; Laenge des Vektors
+FlaechenNormale = r_PE/norm(r_PE)
+%Gerade = punkt + rho*FlaechenNormale;
 
-Matrix = [ortho1; ortho2; FlaechenNormale]
-KoeffzientenVektor = transpose([a b rho])
+Vektor = punkt - r_PE/2;
 
-%L�sung der Gleichtung Matrix * KoeffzientenVektor = Vektor
-KoeffzientenVektor = inv(Matrix) * transpose(Vektor)
+Matrix = [ortho1 ortho2 FlaechenNormale]
+KoeffzientenVektor = [a b rho]
+
+%Loesung der Gleichtung Matrix * KoeffzientenVektor = Vektor
+KoeffzientenVektor = inv(Matrix) * Vektor
 rho = KoeffzientenVektor(3)
-Schnittpunkt = punkt - rho*FlaechenNormale;
-
+Schnittpunkt = punkt - rho*FlaechenNormale
 
 Abstand = norm(Schnittpunkt - punkt)
+
+% Abfrage über minimalen Grenzabstand
+if Abstand > 20
+    disp('von Ebene entfernt');
+else
+    disp('Ebene zu nah');
+end
  
