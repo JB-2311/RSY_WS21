@@ -1,3 +1,6 @@
+%%%Funktion, die die Übergabeposition ausgehend von der Position des
+%%%anderen YouBots berechnet. Zusätzlich wird eine Sicherheitsposition in
+%%%einem gewissen Abstand vor der Übergabeposition errechnet.
 function [Position_sicher, Position_ueb]=Uebergabeposition(position_YB2, uebergabehoehe, abstand)
     pos_YB=position_YB2;
     z_ueb=uebergabehoehe;
