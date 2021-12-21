@@ -63,7 +63,7 @@ function [Winkel, Position_gewuenscht]=IK(Position)
             
         Winkel=([theta1 theta2 theta3 theta4 theta5]);
     else
-        theta1=-atan2(y,-x)
+        theta1=-atan2(y,-x);
     
         % Berechnung Theta_2 & _3    
         r=sqrt(x^2+y^2); % Distanz r zum x,y-Urpsrung
