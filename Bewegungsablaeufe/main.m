@@ -1,8 +1,15 @@
 createSerialLink_ZeroModify;
 
+%Klotz erkennen und greifen und senkrecht fahren
+% % PosKamera(ROS);
+
+%Position YB2 auslesen
+[Punkt_links, Punkt_rechts]=PosKamera_YB(ROS);
+
 % Daten von Kamera
-Punkt_links = [300 30 0];
-Punkt_rechts = [400 40 0];
+% Punkt_links = [300 30 0];
+% Punkt_rechts = [400 40 0];
+
 
 % Position des 2. YouBots mit Daten aus Kamera bestimmen
 pos_YB=YB2_Pos_Bestimmung(Punkt_links, Punkt_rechts);
@@ -24,24 +31,31 @@ GelenkPos(ROS, Winkel);
 pause('on'); %Pause ermöglichen
 pause(3); %für 3 Sekunden warten
 
+
+
+
+
+
+
+
 % Übergabeposition auf gerader Linie anfahren
-schritte=20; % Anzahl Schritte
-a=0:(1/schritte):1; 
-a=transpose(a);
-for i=1:schritte+1    % Schrittweise von Sicherheits- zu Übergabeposition
-        Y=a*(Position_ueb(1:3)-Position_sicher(1:3));
-        TKoordinate=Y+Position_sicher(1:3);
-        
-        Position(1)=TKoordinate(i,1);
-        Position(2)=TKoordinate(i,2);
-        Position(3)=TKoordinate(i,3);
-        Position(4)=0;
-        Position(5)=0;
-        
-        createSerialLink_ZeroModify;
-        [Winkel]=IK(Position);
-        GelenkPos(ROS, Winkel);
- end
+% schritte=20; % Anzahl Schritte
+% a=0:(1/schritte):1; 
+% a=transpose(a);
+% for i=1:schritte+1    % Schrittweise von Sicherheits- zu Übergabeposition
+%         Y=a*(Position_ueb(1:3)-Position_sicher(1:3));
+%         TKoordinate=Y+Position_sicher(1:3);
+%         
+%         Position(1)=TKoordinate(i,1);
+%         Position(2)=TKoordinate(i,2);
+%         Position(3)=TKoordinate(i,3);
+%         Position(4)=0;
+%         Position(5)=0;
+%         
+%         createSerialLink_ZeroModify;
+%         [Winkel]=IK(Position);
+%         GelenkPos(ROS, Winkel);
+%  end
 
 
 
