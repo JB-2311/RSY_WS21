@@ -11,11 +11,11 @@ GelenkPos(ROS,[0, pi/3, -pi/4, -pi/4, 0]); % YB2 Erkennungsposition Fahren
 YB2_Koord = KreisErkennung(ROS,'w','2',20,195,'Dtol',10,'Atol',20,'Sens',0.7,'Bild'); %30er Durchmesser fuer gesamten Klotz
  
 %% Kamera Koordinaten mithilfe von DH zu der Basis Umrechnen
-P1=calc_Trans_Kamera(YB2_Koord(1).X, YB2_Koord(1).Y, YB2_Koord(1).Z,0)
-P2=calc_Trans_Kamera(YB2_Koord(2).X, YB2_Koord(2).Y, YB2_Koord(2).Z,0)
+P1=calc_Trans_Kamera(YB2_Koord(1).X, YB2_Koord(1).Y, YB2_Koord(1).Z,0);
+P2=calc_Trans_Kamera(YB2_Koord(2).X, YB2_Koord(2).Y, YB2_Koord(2).Z,0);
 
-P1=[P1(1) P1(2) P1(3)]
-P2=[P2(1) P2(2) P2(3)]
+P1=[P1(1) P1(2) P1(3)];
+P2=[P2(1) P2(2) P2(3)];
 
 
  

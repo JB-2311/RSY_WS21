@@ -12,16 +12,16 @@ GreiferPos(ROS, 0);
 GelenkPos(ROS, PosKamera_Klotz);
 Objekt_Koord = KreisErkennung(ROS,'w','1',20,'Dtol',5,'Sens',0.7,'Bild'); %30er Durchmesser fuer gesamten Klotz
 
-lauschen=1;
-while lauschen == 1
-        Nachricht.Data =13;
-        send(Publisher,Nachricht);
-        try
-        NaYB2 = receive(Subscriber, 0.1);
-        NaYB2
-        catch
-        end
-end
+% lauschen=1;
+% while lauschen == 1
+%         Nachricht.Data =13;
+%         send(Publisher,Nachricht);
+%         try
+%         NaYB2 = receive(Subscriber, 0.1);
+%         NaYB2
+%         catch
+%         end
+% end
 
 if Objekt_Koord.X>0
     disp("Klotz da, ich bin Master")
