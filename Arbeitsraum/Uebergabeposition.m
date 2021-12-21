@@ -13,9 +13,9 @@ function [Position_sicher, Position_ueb]=Uebergabeposition(position_YB2, ueberga
     y2=sin(theta1)*(r_ueb/2);    
 
     if Rolle == 1 %Master-Rolle
-        Position_ueb=[x2 y2 z_ueb 0 pi/2]; 
+        Position_ueb=[x2 -y2 z_ueb 0 pi/2]; 
     else %Slave-Rolle
-        Position_ueb=[x2 y2 z_ueb 0 0]; 
+        Position_ueb=[x2 -y2 z_ueb 0 0]; 
         
     end
 
@@ -25,9 +25,9 @@ function [Position_sicher, Position_ueb]=Uebergabeposition(position_YB2, ueberga
     y_s=sin(theta1)*(r_ueb_sicher/2);
     
     if Rolle == 1 %Master-Rolle
-        Position_sicher=[x_s y_s z_ueb 0 pi/2]; 
+        Position_sicher=[x_s -y_s z_ueb 0 pi/2]; 
     else %Slave-Rolle
-        Position_sicher=[x_s y_s z_ueb 0 0];
+        Position_sicher=[x_s -y_s z_ueb 0 0];
     end
 
        
