@@ -15,7 +15,7 @@ Abstand=[];
 AbstandToleranz=3;
 Bildlich=0;
 %##################################################
-% Kamerakalibrationswerte
+% Kamerakalibrationswerte; auskommentiert für Klotz-Erkennung
 % if strcmp(ROS.User.Name, "youbot-02")
 %     RGB_Depth_X = -80;
 %     RGB_Depth_Y = -80;
