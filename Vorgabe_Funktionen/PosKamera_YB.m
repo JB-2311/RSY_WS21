@@ -17,6 +17,7 @@ P2=calc_Trans_Kamera(YB2_Koord(2).X, YB2_Koord(2).Y, YB2_Koord(2).Z,0);
 P1=[P1(1) P1(2) P1(3)];
 P2=[P2(1) P2(2) P2(3)];
 
+disp("Anderen YouBot erkannt")
 
  
 % GelenkPos(ROS,[0, 0, 0, 0, 0]); 
