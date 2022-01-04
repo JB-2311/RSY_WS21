@@ -1,4 +1,4 @@
-% Berechnungsskript für die Übergabehöhe
+% Berechnung der Übergabehöhe aus der erkannten Position des 2. YouBots
 
 function [z_ueb]=Uebergabehoehe(pos_YB,orientierung_psi)
     % l (Länge der Links)

@@ -1,27 +1,23 @@
-function PunktEbeneAbstand(pos_YB2, position_YB1_aktuell)
-    %clear all
-    Position=position_YB1_aktuell;
-    pos_YB=pos_YB2;
+function PunktEbeneAbstand(position_YB2, position_YB1_gewuenscht)
+    Position=position_YB1_gewuenscht;
+    pos_YB=position_YB2;
     
     % Uebergabepunkt spaeter von Kamera
-    r_PE = [pos_YB(1); pos_YB(2); 0];
-    punkt = [Position(1); Position(2); Position(3)];
+    r_PE = [pos_YB(1); pos_YB(2); 0]; % Vektor in x-y-Ebene
+    punkt = [Position(1); Position(2); Position(3)]; % Koordinaten des gewünschten Punkt übergeben
     
     % Einheitsvektor fuer Verrechnung der Matrizen
     z_EV = [0; 0; 1];
-    
-    % ortho1 = cross((r/2),z);
+
     ortho1 = cross(r_PE,z_EV);
     ortho2 = z_EV;
     
     %Ebene im Raum
     syms a b rho
-    %Ebene = r/2 + a * ortho1 + b * ortho2;
-    
+       
     %Gerade im Raum; Laenge des Vektors
     FlaechenNormale = r_PE/norm(r_PE);
-    %Gerade = punkt + rho*FlaechenNormale;
-    
+        
     Vektor = punkt - r_PE/2;
     
     Matrix = [ortho1 ortho2 FlaechenNormale];

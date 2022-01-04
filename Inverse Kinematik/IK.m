@@ -1,10 +1,8 @@
-function [Winkel, Position_gewuenscht]=IK(Position)
-    %Position=[-386 -50 312 0 0];
+function [Winkel]=IK(Position)
     x=Position(1);
     y=Position(2);
     z=Position(3);
-    psi=Position(4); %rad
-    Position_gewuenscht=Position;
+    psi=Position(4); %rad   
     
     % Versatz & Link-Längen:
         % alpha
@@ -30,9 +28,10 @@ function [Winkel, Position_gewuenscht]=IK(Position)
     l3=135;
     l4=217.5; 
     
-    % Berechnung Theta_1
-    
+   
+    % Fallunterscheidung für kritischen Punkt bei Versatz in x-Richtung (d2)
     if x>=d2
+        % Berechnung Theta_1
         theta1=atan2(y,x);
     
         % Berechnung Theta_2 & _3    
@@ -55,14 +54,14 @@ function [Winkel, Position_gewuenscht]=IK(Position)
         
         % Berechnung Theta_4
         theta4=psi+theta2+theta3 -(pi/2); 
-        theta4 = -theta4;
+        theta4 = -theta4; %Drehrichtung umkehren
+
         % Theta_5 aus Angabe
-        theta5=Position(5);
-        
-        %theta3=-theta3 % Drehrichtung umgekehrt
+        theta5=Position(5);              
             
-        Winkel=([theta1 theta2 theta3 theta4 theta5]);
+        Winkel=([theta1 theta2 theta3 theta4 theta5]); % Winkel übergeben
     else
+        % Berechnung Theta_1
         theta1=-atan2(y,-x);
     
         % Berechnung Theta_2 & _3    
@@ -85,14 +84,11 @@ function [Winkel, Position_gewuenscht]=IK(Position)
         
         % Berechnung Theta_4
         theta4=psi+theta2+theta3 -(pi/2); 
-        theta4 = -theta4;
-        % Theta_5 aus Angabe
-        theta5=Position(5);
+        theta4 = -theta4; %Drehrichtung umkehren
+
+        % Theta_5 aus Vorgabe
+        theta5=Position(5);            
         
-        %theta3=-theta3 % Drehrichtung umgekehrt
-        
-        Winkel=([theta1 -theta2 -theta3 -theta4 theta5]);
+        Winkel=([theta1 -theta2 -theta3 -theta4 theta5]); % Winkel übergeben, Drehrichtung von 2-4 umgekehrt
     end
 end
-
-%GelenkPos(ROS,Winkel)

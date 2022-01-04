@@ -7,13 +7,12 @@ function [pos_YB]=YB2_Pos_Bestimmung(Punkt_links, Punkt_rechts)
     s=110; %Abstand von Mittelpunkt zwischen Markern zu YB2 Position
     m= (EP_1+EP_2)*0.5; %Mittelpunkt zwischen Markerpositionen
     
-
-    %beta=atan2(EP_2(1),EP_2(2))
+    % Hilfswinkel bestimmen   
     beta=atan(EP_2(2)/EP_2(1));
     gamma=acos((norm(EP_2)^2+norm(EP_1-EP_2)^2-norm(EP_1)^2)/(2*norm(EP_2)*norm(EP_1-EP_2)));
     delta=beta+gamma-pi/2;  
 
-    pos_YB=m+[s*cos(delta) s*sin(delta) 0];
+    pos_YB=m+[s*cos(delta) s*sin(delta) 0]; % Position YB2 bestimmen: Mittelpunkt verschoben um Anteil von Länge s in x- & y-Richtung
 end
 
 

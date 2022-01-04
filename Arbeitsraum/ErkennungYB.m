@@ -2,10 +2,10 @@
 function [P1,P2]=ErkennungYB(ROS)
     %% Position von YB2 Berechnen
     GelenkPos(ROS,[0, 0, 0, 0, 0]); % Kerzenposition anfahren
-    GelenkPos(ROS,[0, pi/3, -pi/4, -pi/4, 0]); % in YB2 Erkennungsposition fahren 
+    GelenkPos(ROS,[0, pi/3, -pi/4, -pi/4, 0]); % in YB2-Erkennungsposition fahren 
     
     %liveBild;
-    %liveBild_YB2;                              % Marke erkennen von der YouBot2
+    %liveBild_YB2;  % Erkennungsbild ausgeben lassen -> funktioniert auch ohne                           
     
     % Kreise erkennen
     % ursprünglich: Dtol 5, Atol 10
@@ -15,6 +15,7 @@ function [P1,P2]=ErkennungYB(ROS)
     P1=calc_Trans_Kamera(YB2_Koord(1).X, YB2_Koord(1).Y, YB2_Koord(1).Z,0);
     P2=calc_Trans_Kamera(YB2_Koord(2).X, YB2_Koord(2).Y, YB2_Koord(2).Z,0);
     
+    % x-, y-, & z-Koordinaten
     P1=[P1(1) P1(2) P1(3)];
     P2=[P2(1) P2(2) P2(3)];
     
