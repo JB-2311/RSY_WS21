@@ -13,12 +13,21 @@ warning off; % Warnungen ausschalten für übersichtlichere Ausgaben in Command 
 
 createSerialLink_ZeroModify; % Referenzieren
 
-%Klotz erkennen und wenn einer da ist, dann greifen und senkrecht fahren &
+% Klotz erkennen und wenn einer da ist, dann greifen und senkrecht fahren &
 %Rolle definieren (1 =Master, 0 = Slave)
 [Klotz_Pos, Rolle]=ErkennungKlotz(ROS);
 
-%Position der Marker an YB2 erkennen
-[Punkt_links, Punkt_rechts]=ErkennungYB(ROS);
+%Wiederholt probieren Position der Marker an YB2 zu erkennen
+erkennen=0;
+while (~erkennen) % Immer wieder versuchen den anderen YouBot zu erkennen bis kein Fehler mehr
+    try
+        [Punkt_links, Punkt_rechts]=ErkennungYB(ROS); % YouBot2 erkennen        
+        erkennen=1;  % Versuche beenden, wenn Position von YouBot2 erkannt wurde          
+    catch % bei Fehler, dann:
+        disp("Keiner da? Hilfe!")
+        continue % neuen Durchlauf von while-Loop starten
+    end
+end
 
 % Position des 2. YouBots mittels erkannter Marker-Punkte bestimmen
 pos_YB=YB2_Pos_Bestimmung(Punkt_links, Punkt_rechts);
