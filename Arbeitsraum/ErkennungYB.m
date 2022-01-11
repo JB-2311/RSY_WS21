@@ -4,12 +4,8 @@ function [P1,P2]=ErkennungYB(ROS)
     GelenkPos(ROS,[0, 0, 0, 0, 0]); % Kerzenposition anfahren
     GelenkPos(ROS,[0, pi/3, -pi/4, -pi/4, 0]); % in YB2-Erkennungsposition fahren 
     
-    %liveBild;
-    %liveBild_YB2;  % Erkennungsbild ausgeben lassen -> funktioniert auch ohne                           
-    
     % Kreise erkennen
-    % ursprünglich: Dtol 5, Atol 10
-    YB2_Koord = KreisErkennung(ROS,'w','2',20,195,'Dtol',10,'Atol',20,'Sens',0.7,'Bild'); %30er Durchmesser fuer gesamten Klotz
+    YB2_Koord = KreisErkennung(ROS,'w','2',20,195,'Dtol',10,'Atol',20,'Sens',0.7,'Bild'); %Parameter optimiert für YB
      
     %% Kamera Koordinaten mithilfe von DH zu der Basis Umrechnen
     P1=calc_Trans_Kamera(YB2_Koord(1).X, YB2_Koord(1).Y, YB2_Koord(1).Z,0);

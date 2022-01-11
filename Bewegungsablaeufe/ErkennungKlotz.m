@@ -6,7 +6,7 @@ function [Objekt_Koord,Rolle]=ErkennungKlotz(ROS)
     % Klotz erkennen
     GreiferPos(ROS, 0);
     GelenkPos(ROS, PosKamera_Klotz); % Kamerapositionen zum Erkennen anfahren
-    Objekt_Koord = KreisErkennung(ROS,'w','1',20,'Dtol',5,'Sens',0.7,'Bild'); %30er Durchmesser fuer gesamten Klotz
+    Objekt_Koord = KreisErkennung(ROS,'w','1',20,'Dtol',5,'Sens',0.7,'Bild'); %Parameter optimiert für Klotz
     
     % wenn ein Klotz erkannt wurde, dann Master-Rolle und greifen,
     % ansonsten Slave-Rolle

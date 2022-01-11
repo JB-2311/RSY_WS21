@@ -2,9 +2,9 @@ function [Winkel]=IK(Position)
     x=Position(1);
     y=Position(2);
     z=Position(3);
-    psi=Position(4); %rad   
+    psi=Position(4); %in rad   
     
-    % Versatz & Link-Längen:
+    % Versatz & Link-Längen (DH-Parameter):
         % alpha
     alpha1=0;
     alpha2=pi/2;

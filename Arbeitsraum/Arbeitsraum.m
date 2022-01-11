@@ -12,8 +12,7 @@ function [klappt_aussen, klappt_innen]=Arbeitsraum(Position)
     klappt_aussen=0; % default: Abbruch von main, weil Position nicht innerhalb des max. Arbeitsbereichs
     klappt_innen=0; % default: Abbruch von main, weil Position nicht innerhalb des min. Arbeitsbereichs
     
-    % Parameter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        
+    % Parameter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        
         % Länge der Links
     l1=147;
     l2=155;
@@ -30,35 +29,24 @@ function [klappt_aussen, klappt_innen]=Arbeitsraum(Position)
         r_versatz=-33; % negativer Versatz in x-Richtung
     end
 
-    % Theta 3 für maximalen Radius
-    %theta3_maxR=0;
-        % Theta 3 für minimalen Radius, Anschläge
-    theta3_max=deg2rad(150);
-    %theta3_min=deg2rad(-150);
-        
-    
+    % Theta 3 für minimalen Radius, Anschläge
+    theta3_max=deg2rad(150);     
     
     %Berechnung %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Berechnung maximaler Arbeitsraum
-    theta2=acos((z-z_versatz-l4*sin(psi))/(l2+l3)); %??????????????????
+        % Berechnung maximaler Arbeitsraum
+    theta2=acos((z-z_versatz-l4*sin(psi))/(l2+l3));
     r_max=508+r_versatz*sin(theta2)-l4; % maximaler Armradius
     theta4=(pi/2)-psi-theta2;
     r_aussen=sqrt((sqrt(x^2+y^2)-l4*cos(psi)-r_versatz)^2+(z-z_versatz)^2);
-    %r_aussen=sqrt((z-z_versatz)^2+x^2+y^2)+l4*cos(theta4)-33*sin(theta2)
-    
-    % Berechnung minimaler Arbeitsraum
+        % Berechnung minimaler Arbeitsraum
     l_23=sqrt(l2^2+l3^2-2*l2*l3*cos(pi-theta3_max));
-    r_min=l_23; % +l4
-    %r_2=sqrt((sqrt(x^2+y^2)-l4*cos(psi))^2+r_versatz^2);
-    %z_2=z-z_versatz-l4*sin(psi);
-    %r_innen=sqrt(r_2^2+z_2^2)
+    r_min=l_23;
     
     %% Position überprüfen
     % Ist der äußere Radius kleiner/gleich dem maximal möglichen Radius?
     if (r_aussen <= r_max) 
         disp('Klappt außen')
         klappt_aussen=1; % Position im max. AR
-    %elseif (r_innen >= r_min)
     else
         disp('Gewünschte Position ist nicht im maximalen Arbeitsraum')
         klappt_aussen=0; %Abbruch von main, weil Position nicht innerhalb des max. Arbeitsbereichs

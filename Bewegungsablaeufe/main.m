@@ -33,7 +33,7 @@ end
 pos_YB=YB2_Pos_Bestimmung(Punkt_links, Punkt_rechts);
 
 % Übergabehöhe berechnen
-z_ueb=Uebergabehoehe(pos_YB,0); % mit Psi=0 als Übergabeorientierung (???)
+z_ueb=Uebergabehoehe(pos_YB,0); % mit Psi=0 als Übergabeorientierung
 
 % Übergabe-Position unseres YB und Sicherheitsposition davor bestimmen & Greifer entsprechend der Rolle orientieren
 [Position_sicher, Position_ueb] =Uebergabeposition(pos_YB, z_ueb, 90, Rolle); 
@@ -44,6 +44,8 @@ disp('Arbeitsraumüberprüfung Sicherheitsposition:')
 disp('Arbeitsraumüberprüfung Übergabeposition:')
 [klappt_ueb_aussen, klappt_ueb_innen]=Arbeitsraum(Position_ueb);
 
+% nur weitermachen, wenn Übergabe- & Sicherheitsposition im Arbeitsraum
+% sind, sonst Abbruch
 if klappt_sicher_aussen==0 || klappt_sicher_innen==0 || klappt_ueb_aussen==0 || klappt_ueb_innen==0
     disp('Notstopp')
 else    
@@ -61,9 +63,10 @@ else
             % Sicherheitsposition anfahren, Orientierung des EE je nach Master-/Slave-Rolle
             Winkel_Position_sicher=IK(Position_sicher);    
             GelenkPos(ROS, Winkel_Position_sicher);
+
             pause('on'); % Pause ermöglichen
             
-            if Rolle==1 %wenn Master-Rolle und Klotz gegriffen, dann warten bis Slave in Übergabeposition ist und dann erst hinfahren
+            if Rolle==1 %wenn Master-Rolle (Klotz gegriffen), dann warten bis Slave in Übergabeposition ist und dann erst hinfahren
                 % Eingabeaufforderung damit Slave zuerst bei Übergabeposition ist
                 frage_slaveDa='Slave-YouBot in Übergabeposition? (1=ja, 0=nein)';
                 antwort_slaveDa=input(frage_slaveDa);
@@ -96,9 +99,7 @@ else
                 antendwort_nachUebergabe=input(frage_nachUebergabe);
         
                 if Rolle==0 %wenn Slave, dann Klotz ablegen & danach in Kerze
-                    % Ablage-Position anfahren
-                    %Ablage_Pos=IK([-191.06 -32.04 57.0625-10 -(pi/2) 0]);
-                    %%ursprüngliche Werte
+                    % Ablage-Position anfahren                   
                     Ablage_Pos=IK([-191.06-10 -32.04-6 57.0625+2 -(pi/2) 0]); 
                     GelenkPos(ROS, Ablage_Pos);
                     % Greifer öffnen
