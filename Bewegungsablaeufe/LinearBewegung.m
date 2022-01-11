@@ -1,5 +1,5 @@
 %% YouBot verfährt linear von einem Punkt zum anderen
-function LinearBewegung(startPunkt,endPunkt, anzahlSchritte)
+function LinearBewegung(ROS,startPunkt,endPunkt, anzahlSchritte)
     schritte=anzahlSchritte; % Anzahl Schritte (20)
     a=0:(1/schritte):1; 
     a=transpose(a);

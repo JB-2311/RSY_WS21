@@ -1,6 +1,8 @@
-function PunktEbeneAbstand(position_YB2, position_YB1_gewuenscht)
+function [Signal_PunktEbene]=PunktEbeneAbstand(position_YB2, position_YB1_gewuenscht)
     Position=position_YB1_gewuenscht;
     pos_YB=position_YB2;
+
+    Signal_PunktEbene=0; % default: Abbruch von main, weil Position nicht genügend Abstand hat
     
     % Uebergabepunkt spaeter von Kamera
     r_PE = [pos_YB(1); pos_YB(2); 0]; % Vektor in x-y-Ebene
@@ -33,8 +35,10 @@ function PunktEbeneAbstand(position_YB2, position_YB1_gewuenscht)
     % Abfrage über minimalen Grenzabstand
     if Abstand > 20
         disp('weit genug von Ebene entfernt');
+        Signal_PunktEbene=1; % Position hat genügend Abstand
     else
         disp('zu nah an Ebene');
+        Signal_PunktEbene=0; % Abbruch von main, weil Position nicht genügend Abstand hat
     end
 end
  

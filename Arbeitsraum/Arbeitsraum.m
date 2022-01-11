@@ -1,16 +1,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Arbeitsraumabschätzung
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function Arbeitsraum(Position)
+function [klappt_aussen, klappt_innen]=Arbeitsraum(Position)
     % gewünschte Position übergeben
     x=Position(1);
     y=Position(2);
     z=Position(3);
     psi=Position(4); %rad
     
+    % 0/1-Variablen für Position innerhalb (1) oder außerhalb (0) des Arbeitsraums
+    klappt_aussen=0; % default: Abbruch von main, weil Position nicht innerhalb des max. Arbeitsbereichs
+    klappt_innen=0; % default: Abbruch von main, weil Position nicht innerhalb des min. Arbeitsbereichs
+    
     % Parameter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        % 0/1-Variable für Position innerhalb (1) oder außerhalb (0) des Arbeitsraums
-    klappt=0; % default: klappt nicht
+        
         % Länge der Links
     l1=147;
     l2=155;
@@ -53,20 +56,20 @@ function Arbeitsraum(Position)
     %% Position überprüfen
     % Ist der äußere Radius kleiner/gleich dem maximal möglichen Radius?
     if (r_aussen <= r_max) 
-        klappt=1; % Position im AR
         disp('Klappt außen')
+        klappt_aussen=1; % Position im max. AR
     %elseif (r_innen >= r_min)
     else
-        klappt=0; % Position NICHT im AR
         disp('Gewünschte Position ist nicht im maximalen Arbeitsraum')
+        klappt_aussen=0; %Abbruch von main, weil Position nicht innerhalb des max. Arbeitsbereichs
     end
     % Ist der äußere Radius größer/gleich dem minimal möglichen Radius?
     if (r_aussen >= r_min)
-        klappt=1; % Position im AR
         disp('Klappt innen')
+        klappt_innen=1; % Position im min. AR
     else
-        klappt=0; % Position NICHT im AR
         disp('Gewünschte Position ist nicht im minimalen Arbeitsraum')
+        klappt_innen=0; %Abbruch von main, weil Position nicht innerhalb des min. Arbeitsbereichs
     end
 end
 

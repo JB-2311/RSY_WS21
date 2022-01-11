@@ -18,7 +18,7 @@ function [Objekt_Koord,Rolle]=ErkennungKlotz(ROS)
         Winkel_Position_ueberKlotz=IK([-Objekt_Koord.Y -Objekt_Koord.X (Objekt_Koord.Z)+15 -(pi/2) 0]); 
         GelenkPos(ROS, Winkel_Position_ueberKlotz); % Punkt über Klotz anfahren
         GreiferPos(ROS, 20); % Greifer öffnen
-        Winkel_Position_anKlotz=IK([-Objekt_Koord.Y -Objekt_Koord.X (Objekt_Koord.Z)-10 -(pi/2) 0]); 
+        Winkel_Position_anKlotz=IK([-Objekt_Koord.Y-14 -Objekt_Koord.X-6 (Objekt_Koord.Z)-15 -(pi/2) 0]); %Koordinaten optimiert zum Greifen
         GelenkPos(ROS, Winkel_Position_anKlotz); % Punkt bei Klotz anfahren
         pause(5); % Warten auf Schließen des Greifers und Zeit zum Korrigieren der Klotzposition
         GreiferPos(ROS, 0); % Greifer schließen
