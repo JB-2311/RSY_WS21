@@ -4,7 +4,7 @@ function [Signal_PunktEbene]=PunktEbeneAbstand(position_YB2, position_YB1_gewuen
 
     Signal_PunktEbene=0; % default: Abbruch von main, weil Position nicht genügend Abstand hat
     
-    % Uebergabepunkt spaeter von Kamera
+    % Uebergabepunkt von Kamera
     r_PE = [pos_YB(1); pos_YB(2); 0]; % Vektor in x-y-Ebene
     punkt = [Position(1); Position(2); Position(3)]; % Koordinaten des gewünschten Punkt übergeben
     
